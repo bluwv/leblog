@@ -1,0 +1,11 @@
+/* TEAM */
+	Groupe 1B X75 2025-26
+
+/* THANKS */
+
+
+/* SITE */
+	Last update: 2026/01/15
+	Language: French
+	Doctype: HTML5
+	IDE: VSCode
