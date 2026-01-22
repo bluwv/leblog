@@ -1,1 +1,193 @@
-@import"https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap";html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}*{box-sizing:border-box}html{font-size:62.5%}body{font-family:"Inter",sans-serif;font-size:1.6rem}.single-banner{display:flex;align-items:end;border-top:1px solid #000;border-bottom:1px solid #000}.single-banner>div{padding:8rem clamp(2rem,1.4848vw + 1.4581rem,4rem);padding-right:max(8rem,10vw)}.single-banner img{min-width:min(40vw,68.4rem);height:100%;object-fit:cover}.single-banner .title{margin:2rem auto;font-size:4rem;letter-spacing:-0.02em;line-height:1.2}.single-banner p{margin:2rem auto;font-size:2rem;line-height:1.5}@media screen and (max-width: 800px){.single-banner{flex-wrap:wrap-reverse}}@media screen and (min-width: 801px){.single-banner{height:100vw;max-height:70.4rem}}/*# sourceMappingURL=style.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:root {
+  --text-body: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--text-body);
+  font-size: 1.6rem;
+}
+
+/* SINGLE */
+.single-banner {
+  display: flex;
+  align-items: end;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+.single-banner > div {
+  padding: 8rem clamp(2rem, 1.4848vw + 1.4581rem, 4rem);
+  padding-right: max(8rem, 10vw);
+}
+.single-banner img {
+  min-width: min(40vw, 68.4rem);
+  height: 100%;
+  object-fit: cover;
+}
+.single-banner .title {
+  margin: 2rem auto;
+  font-size: 4rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.single-banner p {
+  margin: 2rem auto;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+@media screen and (max-width: 800px) {
+  .single-banner {
+    flex-wrap: wrap-reverse;
+  }
+}
+@media screen and (min-width: 801px) {
+  .single-banner {
+    height: 100vw;
+    max-height: 70.4rem;
+  }
+}
+
+/* HOME */
+.home {
+  padding-inline: 4rem;
+}
+.home section > .title {
+  font-family: var(--text-body);
+  font-size: 3.2rem;
+  line-height: 1.2;
+  letter-spacing: -0.064rem;
+}
+
+.posts-latest {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas: "featured ." "featured ." "featured .";
+}
+.posts-latest .card:first-child {
+  grid-area: featured;
+}
+.posts-latest .card:not(:first-child) {
+  display: flex;
+  gap: 4rem;
+}
+.posts-latest .card:not(:first-child) img {
+  max-width: 27rem;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.tabs {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.tab {
+  font-family: var(--text-body);
+  font-size: 1.6rem;
+  color: black;
+  border: 1px solid currentColor;
+  border-radius: 4rem;
+}
+.tab.active {
+  color: white;
+  background: black;
+}
+.tab a {
+  display: block;
+  padding: 1.2rem 2rem;
+  color: currentColor;
+  text-decoration: none;
+}
+
+.posts-all {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.card {
+  font-family: var(--text-body);
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+.card .title {
+  margin: 1.2rem auto;
+  font-family: var(--text-body);
+  font-size: 2.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.048rem;
+}
+.card img {
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=style.css.map */

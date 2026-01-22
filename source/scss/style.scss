@@ -2,6 +2,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+:root {
+    --text-body: "Inter", sans-serif;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -11,9 +15,11 @@ html {
 }
 
 body {
-     font-family: "Inter", sans-serif;
+    font-family: var(--text-body);
     font-size: 1.6rem;
 }
+
+/* SINGLE */
 
 .single-banner {
     display: flex;
@@ -52,5 +58,104 @@ body {
     @media screen and (min-width: 801px) {
         height: 100vw;
         max-height: 70.4rem;
+    }
+}
+
+/* HOME */
+
+.home {
+    padding-inline: 4rem;
+
+    section > .title {
+        font-family: var(--text-body);
+        font-size: 3.2rem;
+        line-height: 1.2;
+        letter-spacing: -0.064rem;
+    }
+}
+
+.hero {}
+
+.posts-latest {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+        "featured ."
+        "featured ."
+        "featured ."
+    ;
+
+    .card:first-child {
+        grid-area: featured;
+    }
+
+    .card:not(:first-child) {
+        display: flex;
+        gap: 4rem;
+
+        img {
+            max-width: 27rem;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+    }
+}
+
+.tabs {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.tab {
+    font-family: var(--text-body);
+    font-size: 1.6rem;
+    color: black;
+    border: 1px solid currentColor;
+    border-radius: 4rem;
+
+    &.active {
+        color: white;
+        background: black;
+    }
+
+    a {
+        display: block;
+        padding: 1.2rem 2rem;
+        color: currentColor;
+        text-decoration: none;
+    }
+}
+
+.posts-all {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.card {
+    font-family: var(--text-body);
+    font-size: 1.6rem;
+    line-height: 1.5;
+
+    .data {
+    }
+
+    .title {
+        margin: 1.2rem auto;
+        font-family: var(--text-body);
+        font-size: 2.4rem;
+        line-height: 1.2;
+        letter-spacing: -.048rem;
+    }
+
+    img {
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
     }
 }

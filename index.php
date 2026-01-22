@@ -16,43 +16,46 @@ error_reporting(E_ALL);
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="home">
 
-    <section>
-        <h1>Le Blog</h1>
+    <section class="hero">
+        <h1 class="title">Le Blog</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In aut accusamus odio neque delectus ex, eaque consectetur ratione, iusto itaque voluptate nam. At quo aperiam totam illum, accusamus quia beatae!</p>
     </section>
 
     <section>
-        <h2>Latest blog posts</h2>
+        <h2 class="title">Latest blog posts</h2>
 
-        <?php for ($i=0; $i < 4; $i++) : ?>
-            <?php include 'includes/card-post.php'; ?>
-        <?php endfor; ?>
+        <div class="posts-latest">
+            <?php for ($i=0; $i < 4; $i++) : ?>
+                <?php include 'includes/card-post.php'; ?>
+            <?php endfor; ?>
+        </div>
     </section>
 
     <section>
-        <h2>All blog posts</h2>
+        <h2 class="title">All blog posts</h2>
 
-        <ul>
-            <li>
+        <ul class="tabs">
+            <li class="tab active">
                 <a href="">all categories</a>
             </li>
-            <li>
+            <li class="tab">
                 <a href="">categorie</a>
             </li>
-            <li>
+            <li class="tab">
                 <a href="">categorie</a>
             </li>
-            <li>
+            <li class="tab">
                 <a href="">categorie</a>
             </li>
         </ul>
 
-
-        <?php for ($i=0; $i < 12; $i++) : ?>
-            <?php include 'includes/card-post.php'; ?>
-        <?php endfor; ?>
+        <div class="posts-all">
+            <?php for ($i=0; $i < 12; $i++) : ?>
+                <?php include 'includes/card-post.php'; ?>
+            <?php endfor; ?>
+        </div>
     </section>
 
 </body>

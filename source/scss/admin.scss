@@ -6,7 +6,9 @@ $Black: #000;
 $BlackStallion: #101820;
 $SoftPumice: rgba(148, 157, 165, 0.08);
 $SpaceWolvesGrey: #D9E5F2;
-$White: #fff;;
+$White: #fff;
+$CommonFeldspar: #848C95;
+
 
 $ClearChill: #208FFF;
 $VividBlue: #203EFF;
@@ -18,6 +20,7 @@ $VividBlue: #203EFF;
     --color-primary-darker: #{$VividBlue};
     --color-text: #{$SpaceWolvesGrey};
     --color-white: #{$White};
+    --color-black: #{$Black};
 
     --font-title: "Inter", sans-serif;
     --font-body: "Inter", sans-serif;
@@ -32,9 +35,6 @@ html {
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
     font-family: var(--font-body);
     font-size: 1.6rem;
@@ -42,7 +42,15 @@ body {
     background: var(--color-background);
 }
 
+/* LOGIN */
+
 .login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
     padding: clamp(3rem, 2.2272vw + 2.1871rem, 6rem) clamp(2rem, 2.9696vw + .9161rem, 6rem);
     width: 90vw;
     max-width: 52rem;
@@ -110,4 +118,38 @@ body {
             text-wrap: nowrap;
         }
     }
+}
+
+/* EDIT */
+
+.edit {
+    background-color: var(--color-white);
+
+    .container {
+        padding: 4rem;
+        background-color: var(--color-white);
+    }
+}
+
+label {
+    display: block;
+    margin-bottom: 1.2rem;
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: $CommonFeldspar;
+}
+
+input {
+    padding: 1.2rem 2rem;
+    width: 100%;
+    max-width: 50rem;
+    font-family: var(--font-body);
+    font-size: 1.6rem;
+    color: var(--color-black);
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+}
+
+::placeholder {
+    color: var(--color-text);
 }
