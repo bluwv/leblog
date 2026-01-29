@@ -1,0 +1,14 @@
+@use "../base/settings" as settings;
+
+.logo {
+    font-family: var(--ff-logo);
+    font-size: 2.4rem;
+    text-decoration: none;
+    color: currentColor;
+
+    span {
+        font-family: var(--font-body);
+        font-size: 1.2rem;
+        color: settings.$CommonFeldspar;
+    }
+}

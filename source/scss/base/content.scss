@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: var(--text-body);
+    font-size: 1.6rem;
+}
+
+h2 {
+    margin-block: 1em .75em;
+    font-size: 3.2rem;
+    line-height: 1.2;
+}
+
+h3 {
+    margin-block: 1em .75em;
+    font-size: 2.4rem;
+    line-height: 1.2;
+}
+
+p {
+    margin-block: 1em;
+    font-size: clamp(1.4rem, .5581vw + 1.1963rem, 2rem);
+    line-height: 1.5;
+}
+
+blockquote {
+    margin-inline: -2rem;
+    font-style: italic;
+
+    & + p {
+        font-size: .8em;
+        opacity: .8;
+    }
+}
+
+a {
+    color: currentColor;
+    text-decoration: none;
+}

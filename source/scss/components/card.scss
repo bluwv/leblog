@@ -1,0 +1,27 @@
+.card {
+    font-family: var(--text-body);
+    font-size: 1.6rem;
+    line-height: 1.5;
+
+    .data {
+        margin: 1.2rem 0;
+    }
+
+    .title {
+        margin: 2.4rem auto;
+        font-family: var(--text-body);
+        font-size: 2.4rem;
+        line-height: 1.2;
+        letter-spacing: -.048rem;
+    }
+
+    img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+    }
+
+    svg {
+        display: none;
+    }
+}

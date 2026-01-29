@@ -1,3 +1,14 @@
+<?php
+$page = 'edit';
+
+require_once "includes/session.php";
+
+if ( time() > $_SESSION["user"] + 300 ) {
+    header('Location: login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +36,7 @@
 
                 <div class="col col-lg-4">
                     <label for="thumbnail">Thumbnail</label>
-                    <img src="assets/images/photo-1761839257961-4dce65b72d99.avif" class="img-thumbnail" alt="">
+                    <img src="../assets/images/photo-1761839257961-4dce65b72d99.avif" class="img-thumbnail" alt="">
                     <input id="thumbnail" class="form-control" type="file" name="thumbnail">
 
                     <label>Catégorie</label>
@@ -80,6 +91,14 @@
                 }, false)
             })
         })()
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
     </script>
 
 </body>

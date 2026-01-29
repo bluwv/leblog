@@ -3,7 +3,7 @@
     "sass": "^1.97.2"
   },
   "scripts": {
-    "dev": "npx sass --watch source/scss/style.scss:assets/css/style.css source/scss/admin.scss:assets/css/admin.css",
-    "build": "npx sass --style=compressed source/scss/style.scss:assets/css/style.css source/scss/admin.scss:assets/css/admin.css"
+    "dev": "npx sass --watch source/scss/style.scss:assets/css/style.css admin/source/scss/admin.scss:admin/assets/css/admin.css",
+    "build": "npx sass --style=compressed source/scss/style.scss:assets/css/style.css admin/source/scss/admin.scss:admin/assets/css/admin.css"
   }
 }

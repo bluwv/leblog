@@ -4,6 +4,16 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$page = 'listing';
+
+require_once "includes/session.php";
+
+var_dump($_SESSION["user"] + 150 - time());
+
+if ( time() > $_SESSION["user"] + 150 ) {
+    header('Location: login.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,13 +52,13 @@ error_reporting(E_ALL);
                 <li class="nav-item">
                     <a class="nav-link active" href="">All</a>
                 </li>
-                <li class="nav-itme">
+                <li class="nav-item">
                     <a class="nav-link" href="">Active</a>
                 </li>
-                <li class="nav-itme">
+                <li class="nav-item">
                     <a class="nav-link" href="">Draft</a>
                 </li>
-                <li class="nav-itme">
+                <li class="nav-item">
                     <a class="nav-link" href="">Archived</a>
                 </li>
             </ul>
@@ -67,7 +77,9 @@ error_reporting(E_ALL);
                     <tbody>
                         <?php for ($i=0; $i < 20; $i++) : ?>
                             <tr>
-                                <th>Article 1</th>
+                                <th>
+                                    <a href="/admin/edit.php">Article 1</a>
+                                </th>
                                 <td>Catégorie 1</td>
                                 <td>Admin</td>
                                 <td>22/01/2026</td>
@@ -114,6 +126,8 @@ error_reporting(E_ALL);
     </main>
 
     <?php include 'includes/admin-sidebar.php'; ?>
+
+    <script src="../source/js/script.js"></script>
 
 </body>
 </html>

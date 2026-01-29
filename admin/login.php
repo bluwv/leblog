@@ -1,3 +1,14 @@
+<?php
+$page = 'login';
+
+require_once "includes/session.php";
+
+// if ( $_SESSION["user"] ) {
+//     header('Location: listing.php');
+//     exit;
+// }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

@@ -1,0 +1,24 @@
+$Black: #000;
+$BlackStallion: #101820;
+$SoftPumice: rgba(148, 157, 165, 0.08);
+$SpaceWolvesGrey: #D9E5F2;
+$White: #fff;
+$CommonFeldspar: #848C95;
+
+
+$ClearChill: #208FFF;
+$VividBlue: #203EFF;
+
+:root {
+    --color-background: #{$BlackStallion};
+    --color-box: #{$SoftPumice};
+    --color-primary: #{$ClearChill};
+    --color-primary-darker: #{$VividBlue};
+    --color-text: #{$SpaceWolvesGrey};
+    --color-white: #{$White};
+    --color-black: #{$Black};
+
+    --font-title: "Inter", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --ff-logo: "Rakkas", serif;
+}

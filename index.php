@@ -13,13 +13,19 @@ error_reporting(E_ALL);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Blog</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rakkas&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="home">
 
     <section class="hero">
-        <h1 class="title">Le Blog</h1>
+        <h1 class="logo">
+            <a href="index.php">Le Blog</a>
+        </h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In aut accusamus odio neque delectus ex, eaque consectetur ratione, iusto itaque voluptate nam. At quo aperiam totam illum, accusamus quia beatae!</p>
     </section>
 
