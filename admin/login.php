@@ -1,12 +1,48 @@
 <?php
 $page = 'login';
 
-require_once "includes/session.php";
+session_start();
 
-// if ( $_SESSION["user"] ) {
-//     header('Location: listing.php');
-//     exit;
-// }
+$host = 'localhost';
+$dbname = 'leblog';
+$user = 'root';
+$pass = 'root';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+}
+
+if ( ! empty($_POST) ) {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $query = "SELECT *
+    FROM users
+    WHERE email = :email OR username = :email ";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([':email' => $email]);
+    $response = $stmt->fetch();
+
+    if ( password_verify($password, $response->password) ) {
+        $_SESSION["user_id"] = $response->id;
+        $_SESSION["user_name"] = $response->username;
+        $_SESSION["user_role"] = $response->role;
+        $_SESSION["user_last_activity"] = time();
+
+        header('Location: listing.php');
+        exit;
+    } else {
+        // AJOUTER MESSAGE FAIL
+    }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,15 +58,18 @@ require_once "includes/session.php";
         <h1>Le Blog</h1>
         <p>Don’t have an account yet? <a href="">Sign up</a></p>
 
-        <form action="">
+        <form action="" method="POST" novalidate>
             <div>
                 <label for="email">email address</label>
-                <input id="email" type="email" name="email" placeholder="name@gmail.com" required>
+                <input id="email" type="email" name="email" placeholder="name@gmail.com" value="<?php echo (!(empty($_POST))) ? $_POST['email'] : ''; ?>" required>
             </div>
 
             <div>
                 <label for="password">password</label>
-                <input id="password" type="password" name="password" placeholder="*****" required>
+                <div>
+                    <input id="password" type="password" name="password" placeholder="*****" value="<?php echo (!(empty($_POST))) ? $_POST['password'] : ''; ?>" required>
+                    <button type="button" data-show-password>Show</button>
+                </div>
             </div>
 
             <button type="submit">Login</button>
@@ -38,6 +77,8 @@ require_once "includes/session.php";
 
         <a href="">I lost password</a>
     </div>
+
+    <script src="assets/js/script.js"></script>
 
 </body>
 </html>

@@ -34,6 +34,10 @@
 
         & > div {
             margin: 2rem auto;
+
+            & > div {
+                position: relative;
+            }
         }
 
         label {
@@ -46,9 +50,14 @@
         input {
             padding: 1.4rem 2.4rem 1.2rem;
             width: 100%;
+            color: var(--color-foreground);
             background: var(--color-background);
             border: none;
             border-radius: .4rem;
+        }
+
+        ::placeholder {
+            color: grey;
         }
     }
 
@@ -72,5 +81,27 @@
             font-weight: 400;
             text-wrap: nowrap;
         }
+    }
+}
+
+[data-show-password] {
+    all: inherit;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    margin: 0;
+    transform: translate(-50%,-50%);
+    color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: contain;
+    cursor: pointer;
+
+    [type="password"] + & {
+        background-image: url('../images/eye.svg');
+    }
+
+    [type="text"] + & {
+        background-image: url('../images/eye-slash.svg');
     }
 }

@@ -1,12 +1,14 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 
-/**
- * À adapter lorsque la connexion db sera effective et la page login fonctionnelle
- * Je stock des infos style timestamp, et autre vérification
- *
- */
-
-if ($page == "login") {
-    $_SESSION["user"] = 1769717874;
+if ( time() > $_SESSION["user_last_activity"] + 24 * 60 * 60 ) {
+    header('Location: login.php');
+    exit;
+} else {
+    $_SESSION["user_last_activity"] = time();
 }
