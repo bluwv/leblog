@@ -2,8 +2,20 @@
 $page = 'listing';
 
 require_once "includes/session.php";
+require_once "includes/database.php";
+
+$query = "SELECT p.id AS post_id, p.title, p.created_at, u.username AS author, c.name AS categorie_name
+FROM posts p
+LEFT JOIN categories_posts cp ON p.id = cp.post_id
+LEFT JOIN categories c ON cp.categorie_id = c.id
+LEFT JOIN users u ON p.user_id = u.id";
+
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+$response = $stmt->fetchAll();
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,14 +76,14 @@ require_once "includes/session.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <?php for ($i=0; $i < 20; $i++) : ?>
+                        <?php foreach ($response as $r) : ?>
                             <tr>
                                 <th>
-                                    <a href="/admin/edit.php">Article 1</a>
+                                    <a href="/admin/edit.php?p=<?php echo $r->post_id ?>"><?php echo $r->title; ?></a>
                                 </th>
-                                <td>Catégorie 1</td>
-                                <td>Admin</td>
-                                <td>22/01/2026</td>
+                                <td><?php echo $r->categorie_name; ?></td>
+                                <td><?php echo $r->author; ?></td>
+                                <td><?php echo date('d/m/Y H:i', strtotime($r->created_at)); ?></td>
                                 <td>
                                     <!-- <button class="btn btn-primary">…</button>
                                     <menu>
@@ -87,7 +99,7 @@ require_once "includes/session.php";
                                     </menu> -->
                                 </td>
                             </tr>
-                        <?php endfor; ?>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
