@@ -12,7 +12,7 @@ LEFT JOIN users u ON p.user_id = u.id";
 
 $stmt = $pdo->prepare($query);
 $stmt->execute();
-$response = $stmt->fetchAll();
+$posts = $stmt->fetchAll();
 
 ?>
 
@@ -76,7 +76,7 @@ $response = $stmt->fetchAll();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($response as $r) : ?>
+                        <?php foreach ($posts as $r) : ?>
                             <tr>
                                 <th>
                                     <a href="/admin/edit.php?p=<?php echo $r->post_id ?>"><?php echo $r->title; ?></a>

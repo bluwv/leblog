@@ -15,12 +15,12 @@ if ( ! empty($_POST) ) {
 
     $stmt = $pdo->prepare($query);
     $stmt->execute([':email' => $email]);
-    $response = $stmt->fetch();
+    $user = $stmt->fetch();
 
-    if ( password_verify($password, $response->password) ) {
-        $_SESSION["user_id"] = $response->id;
-        $_SESSION["user_name"] = $response->username;
-        $_SESSION["user_role"] = $response->role;
+    if ( password_verify($password, $user->password) ) {
+        $_SESSION["user_id"] = $user->id;
+        $_SESSION["user_name"] = $user->username;
+        $_SESSION["user_role"] = $user->role;
         $_SESSION["user_last_activity"] = time();
 
         header('Location: listing.php');
