@@ -39,6 +39,19 @@ if (isset($_POST['update'])) {
     exit;
 }
 
+if (isset($_POST['delete'])) {
+    $id = $_POST['delete'];
+
+    $query = "DELETE FROM categories
+    WHERE id = :id";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([':id' => $id]);
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +88,7 @@ if (isset($_POST['update'])) {
                             <td>
                                 <!-- <button type="button" data-action>Modifier</button> -->
                                 <button type="submit" form="categorie-<?php echo $categorie->id; ?>" name="update" value="<?php echo $categorie->id; ?>" data-action>Mettre à jour</button>
-                                <!-- <button type="button" data-action>Annuler</button> -->
+                                <button type="submit" form="categorie-<?php echo $categorie->id; ?>" name="delete" value="<?php echo $categorie->id; ?>" data-action>Supprimer</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -10,12 +10,12 @@
             </svg>
 
             <p class="data">
-                <span>Prénom Nom</span>
-                <span>01/01/1970</span>
+                <span><?php echo $post->author; ?></span>
+                <span><?php echo date('d/m/Y', strtotime($post->created_at)); ?></span>
             </p>
-            <h3 class="title">Un super titre qui doit tenir sur maximum 2 lignes</h3>
+            <h3 class="title"><?php echo $post->title; ?></h3>
             <!-- ! de virer les <p> sur les latests posts dans la col 2 -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In aut accusamus odio neque delectus ex, eaque consectetur ratione, iusto itaque voluptate nam. At quo aperiam totam illum, accusamus quia beatae!</p>
+            <p><?php echo $post->content; ?></p>
         </div>
     </a>
 </div>
