@@ -17,9 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     //
-    document.querySelector('[data-action="modal.delete"]').addEventListener('click', (button) => {
-        button.preventDefault();
-        document.querySelector('dialog').showModal();
+    document.querySelectorAll('[data-action="modal.delete"]').forEach((modal) => {
+        modal.addEventListener('click', (button) => {
+            button.preventDefault();
+            document.querySelector('dialog').showModal();
+            document.querySelector('dialog').querySelector('[name="delete"]').value = button.currentTarget.value;
+        });
     });
 
 

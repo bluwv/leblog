@@ -88,7 +88,7 @@ if (isset($_POST['delete'])) {
                             <td>
                                 <!-- <button type="button" data-action>Modifier</button> -->
                                 <button type="submit" form="categorie-<?php echo $categorie->id; ?>" name="update" value="<?php echo $categorie->id; ?>" data-action>Mettre à jour</button>
-                                <button type="submit" form="categorie-<?php echo $categorie->id; ?>" name="delete" value="<?php echo $categorie->id; ?>" data-action>Supprimer</button>
+                                <button type="button" value="<?php echo $categorie->id; ?>" data-action="modal.delete">Supprimer</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -97,7 +97,18 @@ if (isset($_POST['delete'])) {
         </section>
     </main>
 
+    <dialog closedby="any">
+        <p>Êtes vous certain de vouloir supprimer ? Toute suppression est définitive.</p>
+        <button type="button" data-action="modal.close">Annuler et revenir en arrière</button>
+
+        <form action="" method="POST">
+            <button type="submit" name="delete" value="" data-action="delete.post">Supprimer définitivement</button>
+        </form>
+    </dialog>
+
     <?php include 'includes/admin-sidebar.php'; ?>
+
+    <script src="assets/js/script.js"></script>
 
 </body>
 </html>

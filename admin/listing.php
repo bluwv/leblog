@@ -5,7 +5,7 @@ require_once "includes/session.php";
 require_once "includes/database.php";
 
 // VARIABLES
-$page = max(1, $_GET['paged']);
+$page = max(1, $_GET['paged'] ?? 1);
 $limit = 2;
 $offset = ($page - 1) * $limit ?? 1;
 
