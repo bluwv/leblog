@@ -1,6 +1,9 @@
+@use "base/reset";
+
 @use "base/settings";
 @use "base/content";
 
+@use "components/errors";
 @use "components/form";
 @use "components/logo";
 @use "components/sidebar";

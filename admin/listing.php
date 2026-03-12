@@ -6,7 +6,7 @@ require_once "includes/database.php";
 
 // VARIABLES
 $page = max(1, $_GET['paged'] ?? 1);
-$limit = 2;
+$limit = 20;
 $offset = ($page - 1) * $limit ?? 1;
 
 // TOTAL POSTS INSIDE DB
@@ -34,11 +34,27 @@ OFFSET :offset
 ";
 
 $stmt = $pdo->prepare($query);
+
 $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
 $stmt->bindValue(':offset',(int)$offset, PDO::PARAM_INT);
+
 $stmt->execute();
 $posts = $stmt->fetchAll();
 
+
+$query = "SELECT count(*)
+FROM posts";
+$stmt = $pdo->query($query);
+$num_posts = $stmt->fetchColumn();
+
+$query = "SELECT count(*)
+FROM users";
+$stmt = $pdo->query($query);
+$num_users = $stmt->fetchColumn();
+
+if (isset($_GET['status'])) {
+    var_dump($_GET['status']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +64,7 @@ $posts = $stmt->fetchAll();
     <title>Listing</title>
 </head>
 
-<body class="edit d-flex flex-row-reverse">
+<body class="<?php echo $page; ?> d-flex flex-row-reverse" data-page="<?php echo $page; ?>">
 
     <main class="min-vh-100 vw-100">
         <header class="admin-header d-flex align-items-center justify-content-between p-4">
@@ -60,13 +76,13 @@ $posts = $stmt->fetchAll();
             <div class="row gap-4">
                 <div class="col col-sm-6 col-md-3 card p-4">
                     <p>Nombre d’articles</p>
-                    <p class="fs-1 fw-bold">100</p>
+                    <p class="fs-1 fw-bold"><?php echo $num_posts; ?></p>
                 </div>
 
 
                 <div class="col col-sm-6 col-md-3 card p-4">
                     <p>Nombre d’utilisateurs</p>
-                    <p class="fs-1 fw-bold">2</p>
+                    <p class="fs-1 fw-bold"><?php echo $num_users; ?></p>
                 </div>
             </div>
         </section>
@@ -78,13 +94,13 @@ $posts = $stmt->fetchAll();
                     <a class="nav-link active" href="">All</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Active</a>
+                    <a class="nav-link" href="?status=publish">Active</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Draft</a>
+                    <a class="nav-link" href="?status=draft">Draft</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Archived</a>
+                    <a class="nav-link" href="?status=archived">Archived</a>
                 </li>
             </ul>
 

@@ -2,6 +2,11 @@
 $page = 'login';
 
 session_start();
+
+if ( time() < $_SESSION["user_last_activity"] + 24 * 60 * 60 ) {
+    header('Location: listing.php');
+}
+
 require_once "includes/database.php";
 
 if ( ! empty($_POST) ) {
@@ -26,9 +31,10 @@ if ( ! empty($_POST) ) {
         header('Location: listing.php');
         exit;
     } else {
-        // AJOUTER MESSAGE FAIL
+        $errors = [
+            "error" => "Vos identifiants incorrects.",
+        ];
     }
-
 }
 ?>
 
@@ -39,13 +45,19 @@ if ( ! empty($_POST) ) {
     <title>Login</title>
 </head>
 
-<body class="login">
+<body class="login" data-page="<?php echo $page; ?>">
 
     <div class="login-form">
         <h1>Le Blog</h1>
         <p>Don’t have an account yet? <a href="">Sign up</a></p>
 
         <form action="" method="POST" novalidate>
+            <?php if (isset($errors)) : ?>
+                <div class="errors">
+                    <?php echo $errors['error']; ?>
+                </div>
+            <?php endif; ?>
+
             <div>
                 <label for="email">email address</label>
                 <input id="email" type="email" name="email" placeholder="name@gmail.com" value="<?php echo (!(empty($_POST))) ? $_POST['email'] : ''; ?>" required>
