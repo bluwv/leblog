@@ -1,5 +1,13 @@
 <?php
 
+include_once 'config/database.php';
+include_once 'includes/home.php';
+
+$post_id = $_GET['p'];
+
+$post = getPost($pdo, $post_id);
+$latest_posts = getLatestPosts($pdo, 3);
+
 ?>
 
 <!DOCTYPE html>
@@ -24,17 +32,18 @@
 
     <section class="single-banner">
         <div>
-            <span>01/01/1970</span>
-            <h1 class="title">Un super titre qui doit tenir sur maximum 2 lignes</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In aut accusamus odio neque delectus ex, eaque consectetur ratione, iusto itaque voluptate nam. At quo aperiam totam illum, accusamus quia beatae!</p>
-            <span>Prénom Nom</span>
+            <span><?php echo date('d/m/Y H:i:s', strtotime($post->created_at)); ?></span>
+            <h1 class="title"><?php echo $post->title; ?></h1>
+            <p><?php echo htmlspecialchars_decode($post->excerpt); ?></p>
+            <span><?php echo $post->author; ?></span>
         </div>
 
-        <img src="assets/images/photo-1761839257961-4dce65b72d99.avif" width="600" height="400" alt="">
+        <img src="admin/uploads/<?php echo $post->thumbnail; ?>" width="600" height="400" alt="">
     </section>
 
     <section class="single-content">
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui dolores ullam architecto, porro culpa, reprehenderit sapiente omnis perspiciatis at harum impedit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui dolores ullam architecto, porro culpa, reprehenderit sapiente omnis perspiciatis at harum impedit.</p>
+        <?php echo htmlspecialchars_decode($post->content); ?>
+        <!-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui dolores ullam architecto, porro culpa, reprehenderit sapiente omnis perspiciatis at harum impedit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui dolores ullam architecto, porro culpa, reprehenderit sapiente omnis perspiciatis at harum impedit.</p>
 
         <div>
             <blockquote>
@@ -53,8 +62,14 @@
 
         <h3>A quaerat, vitae eius asperiores debitis tempora distinctio</h3>
 
-        <p>A quaerat, vitae eius asperiores debitis tempora distinctio, similique provident consequuntur et consectetur aspernatur eos iste officiis dolor iusto, hic ipsum atque molestiae officia rem id. Laborum ea nulla ullam perferendis vero doloribus, voluptate nihil sunt odio, mollitia hic quae repellendus vel, eos eaque.</p>
+        <p>A quaerat, vitae eius asperiores debitis tempora distinctio, similique provident consequuntur et consectetur aspernatur eos iste officiis dolor iusto, hic ipsum atque molestiae officia rem id. Laborum ea nulla ullam perferendis vero doloribus, voluptate nihil sunt odio, mollitia hic quae repellendus vel, eos eaque.</p> -->
     </section>
+
+    <div class="posts-latest">
+        <?php foreach ($latest_posts as $post) : ?>
+            <?php include 'includes/card-post.php'; ?>
+        <?php endforeach; ?>
+    </div>
 
 </body>
 </html>

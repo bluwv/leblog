@@ -1,62 +1,3 @@
-<?php
-$page = 'listing';
-
-require_once "includes/session.php";
-require_once "includes/database.php";
-
-// VARIABLES
-$page = max(1, $_GET['paged'] ?? 1);
-$limit = 20;
-$offset = ($page - 1) * $limit ?? 1;
-
-// TOTAL POSTS INSIDE DB
-$query = "SELECT COUNT(*)
-FROM posts";
-
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-$total = $stmt->fetchColumn();
-
-$total_posts = ceil($total / $limit);
-
-if ($page > $total_posts) {
-    header("Location: ?paged=" . $total_posts);
-}
-
-// SELECT ALL POSTS W PAGINATION
-$query = "SELECT p.id AS post_id, p.title, p.created_at, u.username AS author, c.name AS categorie_name
-FROM posts p
-LEFT JOIN categories_posts cp ON p.id = cp.post_id
-LEFT JOIN categories c ON cp.categorie_id = c.id
-LEFT JOIN users u ON p.user_id = u.id
-LIMIT :limit
-OFFSET :offset
-";
-
-$stmt = $pdo->prepare($query);
-
-$stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
-$stmt->bindValue(':offset',(int)$offset, PDO::PARAM_INT);
-
-$stmt->execute();
-$posts = $stmt->fetchAll();
-
-
-$query = "SELECT count(*)
-FROM posts";
-$stmt = $pdo->query($query);
-$num_posts = $stmt->fetchColumn();
-
-$query = "SELECT count(*)
-FROM users";
-$stmt = $pdo->query($query);
-$num_users = $stmt->fetchColumn();
-
-if (isset($_GET['status'])) {
-    var_dump($_GET['status']);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,18 +87,18 @@ if (isset($_GET['status'])) {
 
             <nav>
                 <ul class="pagination">
-                    <li class="page-item <?php echo ($page == 1) ? "disabled" : "" ?>">
-                        <a class="page-link" href="?paged=<?php echo $page - 1; ?>">&laquo;</a>
+                    <li class="page-item <?php echo ($currentpage == 1) ? "disabled" : "" ?>">
+                        <a class="page-link" href="?paged=<?php echo $currentpage - 1; ?>">&laquo;</a>
                     </li>
 
                     <?php for ($i=1; $i <= $total_posts; $i++) : ?>
-                        <li class="page-item <?php echo ($page == $i) ? "active" : "" ?>">
+                        <li class="page-item <?php echo ($currentpage == $i) ? "active" : "" ?>">
                             <a class="page-link" href="?paged=<?php echo $i; ?>"><?php echo $i; ?></a>
                         </li>
                     <?php endfor; ?>
 
-                    <li class="page-item <?php echo ($page == $total_posts) ? "disabled" : "" ?>">
-                        <a class="page-link" href="?paged=<?php echo $page + 1; ?>">&raquo;</a>
+                    <li class="page-item <?php echo ($currentpage == $total_posts) ? "disabled" : "" ?>">
+                        <a class="page-link" href="?paged=<?php echo $currentpage + 1; ?>">&raquo;</a>
                     </li>
                 </ul>
             </nav>
@@ -166,7 +107,7 @@ if (isset($_GET['status'])) {
 
     <?php include 'includes/admin-sidebar.php'; ?>
 
-    <script src="../source/js/script.js"></script>
+    <script src="source/js/script.js"></script>
 
 </body>
 </html>

@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
     //
     document.querySelectorAll('[data-action="modal.delete"]').forEach((modal) => {
         modal.addEventListener('click', (button) => {
